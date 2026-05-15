@@ -1,0 +1,217 @@
+% Use the grid pitches from 
+% http://www.admin.cam.ac.uk/offices/communications/services/identityguidelines/guidelines-graphiclanguage.pdf
+% 
+% In essence we want the vertical pitch to be such that there are 30 steps.
+% This is based on the PowerPoint template sizes.
+%
+%\newlength{\cam@outer@pitch} \setlength{\cam@outer@pitch}{0.0233333\paperheight} 
+\newlength{\cam@outer@pitch} \setlength{\cam@outer@pitch}{0.0333333\paperheight} 
+
+
+\setbeamersize{text margin left=2\cam@outer@pitch}
+\setbeamersize{text margin right=2\cam@outer@pitch}
+
+\setbeamerfont{section in head/foot}{size=\Large}
+\setbeamerfont{logo in head/foot}{parent=subsection in head/foot}
+
+\setbeamerfont{progress}{size=\tiny}
+\setbeamercolor{progress}{fg=structure.fg!50}
+
+% The University logo
+\pgfdeclareimage[height=1.5\cam@outer@pitch]{beamerlogocambridge}{uiuc_cmyk}
+
+\mode<presentation>
+
+% Mini frames
+
+\defbeamertemplate*{mini frame}{cambridge theme}
+{%
+  \begin{pgfpicture}{0pt}{0pt}{0.1cm}{0.1cm}
+    \pgfpathcircle{\pgfpoint{0.05cm}{0.05cm}}{0.05cm}
+    \pgfusepath{fill,stroke}
+  \end{pgfpicture}%
+}
+[action]
+{
+  \setbeamersize{mini frame size=.14cm,mini frame offset=.03cm}
+}
+
+\defbeamertemplate*{mini frame in current subsection}{cambridge theme}
+{%
+  \begin{pgfpicture}{0pt}{0pt}{0.1cm}{0.1cm}
+    \pgfpathcircle{\pgfpoint{0.05cm}{0.05cm}}{0.05cm}
+    \pgfusepath{stroke}
+  \end{pgfpicture}%
+}
+
+\defbeamertemplate*{mini frame in other subsection}{cambridge theme}[1][50]
+{\color{fg!#1!bg}\usebeamertemplate{mini frame in current subsection}}
+
+% Navigation symbols
+\defbeamertemplate*{navigation symbols}{cambridge theme}{}
+
+% Section and subsections in head/foot
+
+\defbeamertemplate*{section in head/foot}{cambridge theme}
+{\insertsectionhead}
+
+\defbeamertemplate*{section in head/foot shaded}{cambridge theme}[1][50]
+{\color{fg!#1!bg}\usebeamertemplate{section in head/foot}}
+
+\defbeamertemplate*{subsection in head/foot}{cambridge theme}
+{\insertsubsectionhead}
+
+\defbeamertemplate*{subsection in head/foot shaded}{cambridge theme}[1][50]
+{\color{fg!#1!bg}\usebeamertemplate{subsection in head/foot}}
+
+\defbeamertemplate*{subsubsection in head/foot}{cambridge theme}
+{\insertsubsubsectionhead}
+
+\defbeamertemplate*{subsubsection in head/foot shaded}{cambridge theme}[1][50]
+{\color{fg!#1!bg}\usebeamertemplate{subsubsection in head/foot}}
+
+% background
+
+\defbeamertemplate*{background}{cambridge theme}
+{}
+
+% Headline and footline
+
+\defbeamertemplate*{frametitle}{cambridge theme}
+{%
+  \vskip-1pt % HACK: Removes a bright line at the top of the page.
+  \begin{beamercolorbox}[wd=\paperwidth,ht=2.25\cam@outer@pitch,dp=1.8\cam@outer@pitch,leftskip=1\cam@outer@pitch,sep=0pt]{palette primary}%
+    \vbox to 1.\cam@outer@pitch{\vfil\usebeamerfont{frametitle}\insertframetitle\vfil}
+  \end{beamercolorbox}%
+  \nointerlineskip
+  \begin{beamercolorbox}[wd=\paperwidth,dp=0.3\cam@outer@pitch]{lower separation line head}%
+  \end{beamercolorbox}%
+}
+
+\defbeamertemplate*{footprogress}{cambridge theme}
+{
+  \usebeamerfont{progress}\usebeamercolor[fg]{progress}\insertframenumber\ of \inserttotalframenumber
+}
+
+% Frame title continuations, default
+
+\defbeamertemplate*{frametitle continuation}{cambridge theme}{\insertcontinuationcountroman}
+
+%\defbeamertemplate*{footprogress}{cambridge theme}
+%{%
+%\begin{tikzpicture}[x=\cam@outer@pitch,y=\cam@outer@pitch]
+%   \draw[step=0.5,gray,very thin] (-1.4,-1.4) grid (1.4,1.4); 
+%   \draw (-1.5,0) -- (1.5,0);
+%   \draw (0,-1.5) -- (0,1.5);
+%   \draw (0,0) circle (1); \draw (0.3,0) arc (0:30:0.3);
+%\end{tikzpicture}
+
+ % \insertframenumber\ of \inserttotalframenumber
+%}
+
+% 1. Define the base color (Deep Navy)
+
+% Define the colors to match your screenshot
+\setbeamercolor{author in head/foot}{bg=PartMCDarkBlue, fg=WarmCream}
+\setbeamercolor{title in head/foot}{bg=PartMCLightBlue, fg=WarmCream}
+\setbeamercolor{date in head/foot}{bg=PartMCLightOrange, fg=WarmCream}
+
+\defbeamertemplate*{footline}{cambridge theme}
+{
+  % CRITICAL: \leavevmode must be active to prevent vertical stacking
+  \leavevmode%
+  \hbox{%
+    \ifx\insertframetitle\@empty
+      % --- TITLE SLIDE (Invisible Placeholder) ---
+      % We draw empty boxes with the EXACT same dimensions as the real footer.
+      % This forces Beamer to reserve space at the bottom, fixing the crop.
+      \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{}%
+      \end{beamercolorbox}%
+      \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{}%
+      \end{beamercolorbox}%
+      \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,right]{}%
+      \end{beamercolorbox}%
+    \else
+      % --- NORMAL SLIDE (Visible Footer) ---
+      \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+        \usebeamerfont{author in head/foot}\insertshortauthor
+      \end{beamercolorbox}%
+      \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+        \usebeamerfont{title in head/foot}\insertshorttitle
+      \end{beamercolorbox}%
+      \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,right]{date in head/foot}%
+        \usebeamerfont{date in head/foot}\insertshortdate{}\hspace*{2em}
+        \insertframenumber{} / \inserttotalframenumber\hspace*{2ex} 
+      \end{beamercolorbox}%
+    \fi
+  }%
+  \vskip0pt%
+}
+
+% Sidebar
+
+\defbeamertemplate*{sidebar left}{cambridge theme}
+{}
+
+\defbeamertemplate*{sidebar right}{cambridge theme}
+{}
+
+\defbeamertemplate*{sidebar canvas left}{cambridge theme}
+{}
+
+\defbeamertemplate*{sidebar canvas right}{cambridge theme}
+{}
+
+% Notes
+
+\defbeamertemplate*{note page}{cambridge theme}
+{%
+  {%
+    \scriptsize
+    \insertvrule{.25\paperheight}{white!90!black}
+    \vskip-.25\paperheight
+    \nointerlineskip
+    \vbox{
+      \hfill\insertslideintonotes{0.25}\hskip-\Gm@rmargin\hskip0pt%
+      \vskip-0.25\paperheight%
+      \nointerlineskip
+      \begin{pgfpicture}{0cm}{0cm}{0cm}{0cm}
+        \begin{pgflowlevelscope}{\pgftransformrotate{90}}
+          {\pgftransformshift{\pgfpoint{-2cm}{0.2cm}}%
+          \pgftext[base,left]{\footnotesize\the\year-\ifnum\month<10\relax0\fi\the\month-\ifnum\day<10\relax0\fi\the\day}}
+        \end{pgflowlevelscope}
+      \end{pgfpicture}}
+    \nointerlineskip
+    \vbox to .25\paperheight{\vskip0.5em
+      \hbox{\insertshorttitle[width=8cm]}%
+      \setbox\beamer@tempbox=\hbox{\insertsection}%
+      \hbox{\ifdim\wd\beamer@tempbox>1pt{\hskip4pt\raise3pt\hbox{\vrule
+            width0.4pt height7pt\vrule width 9pt
+            height0.4pt}}\hskip1pt\hbox{\begin{minipage}[t]{7.5cm}\def\breakhere{}\insertsection\end{minipage}}\fi%
+      }%
+      \setbox\beamer@tempbox=\hbox{\insertsubsection}%
+      \hbox{\ifdim\wd\beamer@tempbox>1pt{\hskip17.4pt\raise3pt\hbox{\vrule
+            width0.4pt height7pt\vrule width 9pt
+            height0.4pt}}\hskip1pt\hbox{\begin{minipage}[t]{7.5cm}\def\breakhere{}\insertsubsection\end{minipage}}\fi%
+      }%
+      \setbox\beamer@tempbox=\hbox{\insertshortframetitle}%
+      \hbox{\ifdim\wd\beamer@tempbox>1pt{\hskip30.8pt\raise3pt\hbox{\vrule
+            width0.4pt height7pt\vrule width 9pt
+            height0.4pt}}\hskip1pt\hbox{\insertshortframetitle[width=7cm]}\fi%
+      }%
+      \vfil}%
+  }%
+  \vskip.25em
+  \nointerlineskip
+  \insertnote
+}
+
+\mode<all>
+
+\ifbeamertemplateempty{logo}{%
+   \setbeamertemplate{logo}{%
+      %\pgfuseimage{beamerlogocambridge}
+   }
+}{%
+   % Do nothing if logo is set.
+}

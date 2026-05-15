@@ -1,0 +1,75 @@
+\usepackage{cambridgecolours}
+
+\def\beamer@theme@base@blue{
+  \definecolor{CambridgeCore}{named}{CambridgeCoreBlue}
+  \definecolor{CambridgeLight}{named}{CambridgeLightBlue}
+  \definecolor{CambridgeDark}{named}{CambridgeDarkBlue}
+}
+\def\beamer@theme@base@print{
+  \definecolor{CambridgeCore}{named}{CambridgeWhitePrint}
+  \definecolor{CambridgeLight}{named}{CambridgeBlackPrint}
+  \definecolor{CambridgeDark}{named}{CambridgeBlackPrint}
+}
+\def\beamer@theme@base@orange{
+  \definecolor{CambridgeCore}{named}{CambridgeCoreOrange}
+  \definecolor{CambridgeLight}{named}{CambridgeLightOrange}
+  \definecolor{CambridgeDark}{named}{CambridgeDarkOrange}
+}
+\def\beamer@theme@base@purple{
+  \definecolor{CambridgeCore}{named}{CambridgeCorePurple}
+  \definecolor{CambridgeLight}{named}{CambridgeLightPurple}
+  \definecolor{CambridgeDark}{named}{CambridgeDarkPurple}
+}
+\def\beamer@theme@base@green{
+  \definecolor{CambridgeCore}{named}{CambridgeCoreGreen}
+  \definecolor{CambridgeLight}{named}{CambridgeLightGreen}
+  \definecolor{CambridgeDark}{named}{CambridgeDarkGreen}
+}
+\def\beamer@theme@base@teal{
+  \definecolor{CambridgeCore}{named}{CambridgeCoreTeal}
+  \definecolor{CambridgeLight}{named}{CambridgeLightTeal}
+  \definecolor{CambridgeDark}{named}{CambridgeDarkTeal}
+}
+% SF 1/30/26 Add PartMC color theme
+\def\beamer@theme@base@partmc{
+  \definecolor{CambridgeCore}{named}{PartMCLightBlue}
+  \definecolor{CambridgeLight}{named}{PartMCLightOrange}
+  \definecolor{CambridgeDark}{named}{PartMCDarkBlue}
+}
+
+\beamer@theme@base@blue
+\DeclareOptionBeamer{base}{\csname beamer@theme@base@#1\endcsname}
+\ProcessOptionsBeamer
+
+\mode<presentation>
+
+% Use warm off white color for background. Set RGB values to 1 if you want white 
+\definecolor{WarmCream}{rgb}{0.98, 0.97, 0.95}
+\setbeamercolor*{normal text}{fg=CambridgeDark,bg=WarmCream}
+\setbeamercolor*{structure}{fg=CambridgeDark}
+
+\setbeamercolor*{palette primary}{fg=WarmCream,bg=CambridgeDark}
+\setbeamercolor*{palette secondry}{fg=WarmCream,bg=CambridgeDark}
+\setbeamercolor*{palette tertiary}{fg=WarmCream,bg=CambridgeLight!40!black}
+\setbeamercolor*{palette quaternary}{fg=WarmCream,bg=CambridgeLight!40!white}
+
+\setbeamercolor*{title}{fg=WarmCream,bg=CambridgeDark}
+\setbeamercolor*{author}{fg=WarmCream,bg=CambridgeCore}
+\setbeamercolor*{institute}{parent=author}
+\setbeamercolor*{date}{fg=WarmCream,bg=CambridgeLight}
+\setbeamercolor*{abstract}{parent=author}
+
+\setbeamercolor*{lower separation line head}{fg=WarmCream,bg=CambridgeLight}
+
+\setbeamercolor*{special page canvas}{bg=CambridgeWhitePrint}
+\setbeamercolor*{special page separator upper}{bg=CambridgeLight!40!white}
+\setbeamercolor*{special page separator lower}{bg=CambridgeLight!40!black}
+\setbeamercolor*{special page title}{fg=CambridgeWhitePrint,bg=CambridgeDark!80!white}
+
+\setbeamercolor*{block body}{bg=CambridgeDark!20!normal text.bg,fg=CambridgeDark}
+\setbeamercolor*{block title}{bg=CambridgeDark,fg=WarmCream}
+
+\setbeamercolor*{alerted text}{fg=CambridgeDark}
+%\setbeamercolor*{alerted text}{fg=red}
+
+\mode<all>

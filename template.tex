@@ -1,0 +1,107 @@
+% Copyright 2007 by Till Tantau
+% Copyright 2014 by Rich Wareham, Filippo Spiga
+% Copyright 2016 by Petar Veličković
+% Copyright 2020 by Shivam N Patel
+% This file may be distributed and/or modified:
+% 1. under the LaTeX Project Public License and/or
+% 2. under the GNU Public License.
+%
+% See the file LICENSE for more details.
+% Adapted Spring 2026 by Sam Frederick
+
+% ------------------------------------------------------------------------------
+% STYLE NOTE:
+% This custom template adds 'PartMC-themed' primary, secondary, and ternary 
+% colors in ./cambridgecolors.sty and uses a warm off-white background color 
+% 'WarmCream' defined in in beamercolorthemecambridge.sty. These can be adjusted
+% to your liking.
+% ------------------------------------------------------------------------------
+
+\documentclass[aspectratio=169]{beamer}
+
+\usetheme{cambridge}
+\usefonttheme[onlymath]{serif}
+
+\setbeamertemplate{navigation symbols}{}  % suppress navigation symbols
+\setbeamercovered{transparent}
+
+%\hypersetup{pdfpagemode=FullScreen,pdfpagelayout=SinglePage}
+
+%%% Standard packages:
+%\usepackage[english]{babel}
+%\usepackage[latin1]{inputenc}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{subfigure}
+\usepackage{listings}
+%\usepackage[UKenglish]{isodate}
+
+% Setup TikZ (if required)
+%\usepackage{tikz}
+%\usetikzlibrary{arrows}
+%\tikzstyle{block}=[draw opacity=0.7,line width=1.4cm]
+
+%\cleanlookdateon
+
+% Custom packages
+\usepackage{caption}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[absolute,overlay]{textpos}
+
+% Citations (if required)
+\usepackage[style=apa,backend=biber]{biblatex}
+\renewcommand*{\bibfont}{\small} % set small fontsize for reference slides
+\setbeamertemplate{bibliography item}{} % remove document icons
+\addbibresource{citations.bib}
+
+% Author, Title, etc.
+\title[Title abbreviation]
+{%
+ {\bf Your title here}%}
+}
+
+\author[Lastname, et al.]
+{
+  Firstname Lastname\inst{1}, Firstname Lastname\inst{2}
+}
+
+\institute[CL]
+{\inst{1}Department of Climate, Meteorology, and Atmospheric Sciences, University of Illinois Urbana-Champaign,\\
+\inst{2}Department of Mechanical Science and Engineering, University of Illinois Urbana-Champaign}
+
+% Location and date of talk
+\date[\today]
+{Location of talk\hfill \today}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+% Sections appear in PDF reader navigation
+%\section{The big idea}
+
+\begin{refsection} % reference scope for overview
+
+\begin{frame}{Aerosol thermodynamics: problem description}
+  Gibbs free energy minimization is a \textbf{non-linear constrained optimization problem}. Specifically, the \textit{objective function} which we minimize (Gibbs free energy) is non-linear and non-convex with composition due to the non-linear activity coefficients \textcolor{Maroon}{$\gamma_i$}. Following \textcite{wexler_atmospheric_2002},
+  \begin{align}
+    \mathrm{minimize} \quad & G=\sum_i n_i\mu_i\\
+    \mathrm{subject~to} \quad & \sum_i \nu_i n_i = b,\\
+    \quad &  n_i \geq 0
+  \end{align}
+  Fortunately, the constraints (mass conservation and non-negativity), are linear. The chemical potential of each species $i$ is 
+  \begin{equation}
+    \mu_i = \mu_0(T, p) + RT\ln{\textcolor{Maroon}{\gamma_i} x_i}, 
+  \end{equation}
+  where the activity coefficient $\textcolor{Maroon}{\gamma_i}$ is a non-linear function of the multicomponent chemical composition. 
+\end{frame}
+
+% If you need a reference slide, otherwise comment out
+\begin{frame}[allowframebreaks]{References}
+  \printbibliography  
+\end{frame} 
+\end{refsection} % reference scope for overview
+
+\end{document}
