@@ -11,3 +11,4 @@
 *.snm
 *.toc
 *.xml
+.DS_Store
